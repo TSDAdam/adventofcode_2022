@@ -12,19 +12,10 @@ for row in data:
     else:
         elves.append(sum(currentelf))
         currentelf = []
-max = 0
+elves.append(sum(currentelf)) 
 
-print(elves)
-for elf in elves: # part 1
-    if elf > max:
-        max = elf
-print(max)
+elves.sort(reverse=True)
 
-# part 2
-totals = []
-for elf in elves:
-    totals.append(elf)
-totalset = set(totals)
-totalset = sorted(totalset, reverse=True)
+print(elves[0]) # part 1
 
-print(sum(totalset[:3]))
+print(sum(elves[:3])) # part 2
