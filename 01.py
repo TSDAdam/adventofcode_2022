@@ -1,30 +1,21 @@
 data = []
 
-with open ('./01.in') as file:
+with open ('./01.in') as file:              # my standard file read 
     for line in file.readlines():
         data.append(line.strip())
 
-elves = []
-currentelf = []
+elves = []                                  # an empty list for the elves (totals of calories)
+currentelf = []                             # an empty list to add each value to for the current elf
 for row in data:
-    if len(row) > 0:
-        currentelf.append(int(row))
+    if len(row) > 0:                        # if there's a number on this row,
+        currentelf.append(int(row))         # add it to the current elf
     else:
-        elves.append(sum(currentelf))
-        currentelf = []
-max = 0
+        elves.append(sum(currentelf))       # otherwise add the elf to the list,
+        currentelf = []                     # and make a new, blank elf to start again with
+elves.append(sum(currentelf))               # the last elf on the list never gets finished by a blank row, so add them on after the loop
 
-print(elves)
-for elf in elves: # part 1
-    if elf > max:
-        max = elf
-print(max)
+elves.sort(reverse=True)                    # sort the elves descending in value
 
-# part 2
-totals = []
-for elf in elves:
-    totals.append(elf)
-totalset = set(totals)
-totalset = sorted(totalset, reverse=True)
+print(elves[0])                             # part 1
 
-print(sum(totalset[:3]))
+print(sum(elves[:3]))                       # part 2
