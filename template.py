@@ -1,2 +1,3 @@
 with open ('./xx.in') as file:
-    data = file.readlines()
+    data = [line.strip() for line in file]
+
