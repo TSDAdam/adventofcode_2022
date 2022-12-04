@@ -1,5 +1,7 @@
 import string
+import time
 
+st = time.time()
 with open ('./03.in') as file:
     backpacks = [line.strip() for line in file]
 
@@ -21,3 +23,7 @@ for i in range(0, len(backpacks), 3):
     common = set(backpacks[i]) & set(backpacks[i+1]) & set(backpacks[i+2]) # same thing, just looping three at a time and getting the intersections
     t2 += vals.find(next(iter(common))) + 1
 print(t2)
+
+et = time.time()
+
+print (et-st)
