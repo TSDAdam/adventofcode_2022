@@ -11,24 +11,27 @@ def ls(pwd, contents):
     for row in contents:
         entry, arg = row.split(" ")
         if entry == "dir":              # if this row is a dir
-            contains[pwd].append(arg)   # add it to the list of dirs the current dir contains
-            containedIn[arg].append(pwd)
+            contains[pwd].append(str(pwd + arg))   # add it to the list of dirs the current dir contains
+            containedIn[str(pwd + arg)].append(pwd)
         else:
             dirsizes[pwd] += int(entry)
-            # print(contains, dirsizes)
+            # print(contains, containedIn, dirsizes)
 
 i = 0
+pwd = ''
 while i < len(data) -1:
     firstspace = data[i].find(" ")
     text, values = data[i][:firstspace], data[i][firstspace+1:]
     if text == "$":         # ENTRY BY THE USER
         command = values[:2]
-        if command == "cd":     
+        if command == "cd":
             directory = values[3:]
-            if directory != "..":
-                pwd = directory    # Change to the called dir if not ..
+            if directory != "..": 
+                pwd = str(pwd) + str(directory)    # Change to the called dir if not ..
             else: 
-                pwd = containedIn[directory]  # Else check the contained in dir to see where it lives, and jump back up
+                print(prevdir)
+                pwd = str(containedIn[prevdir])
+                print(pwd)  # Else check the contained in dir to see where it lives, and jump back up
             i += 1
         elif command == "ls":
             i += 1
@@ -38,9 +41,9 @@ while i < len(data) -1:
                 i += 1
             ls(pwd, contents)
             
-print(dirsizes)
-print(contains)
-
+#print(dirsizes)
+#print(contains)
+#print(containedIn)
 deepdirsize = defaultdict(int)
 
 def getsubdirsize(currentdir):
