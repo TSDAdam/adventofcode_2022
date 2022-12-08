@@ -141,7 +141,7 @@ for y in range(0, MAXY):
                 if trees[checkDown][x]["height"] > biggestSeen:
                     biggestSeen = trees[checkDown][x]["height"]
 
-        print("tree {} {} can see {} trees left, {} trees right, {} trees up, {} trees down".format(y, x, treesLeft, treesRight, treesUp, treesDown))
+        #print("tree {} {} can see {} trees left, {} trees right, {} trees up, {} trees down".format(y, x, treesLeft, treesRight, treesUp, treesDown))
         trees[y][x]["treesVisible"] = treesLeft * treesRight * treesUp * treesDown
         treesLeft, treesRight, treesUp, treesDown = 0, 0, 0, 0
 
@@ -151,7 +151,7 @@ for row in trees:
         if tree["treesVisible"] >= maxTree:
             maxTree = tree["treesVisible"]
 
-for row in trees:
-    print(row)
+#for row in trees:
+ #   print(row)
 
 print(maxTree)        
