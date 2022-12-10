@@ -22,7 +22,7 @@ while len(data) > 0:
     
 print(regValues)
 p1 = 0
-for i in range(20, len(regValues), 40):
-    print(i , regValues [i], i * regValues[i])
-    p1 += (i * regValues[i])
+for i in range(19, len(regValues), 40):
+    print(i , regValues [i], (i+ 1) * regValues[i])
+    p1 += ((i + 1) * regValues[i])
 print (p1)
